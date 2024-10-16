@@ -1,0 +1,22 @@
+name: Ballerina Daily Test
+
+on:
+  schedule:
+    - cron: '30 18 * * *'
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Ballerina
+      uses: ballerina-platform/setup-ballerina@v1
+      with:
+          version: 2201.10.0
+
+    - name: Run tests
+      run: bal test
